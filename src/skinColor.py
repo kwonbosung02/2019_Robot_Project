@@ -3,6 +3,7 @@ import numpy as np
 
 cam = cv2.VideoCapture(0)
 
+
 if __name__ == "__main__":
     while(1):
         ret , img = cam.read()
@@ -31,12 +32,15 @@ if __name__ == "__main__":
         skin_grey = cv2.cvtColor(skin,cv2.COLOR_BGR2GRAY)
         _, thresh1 = cv2.threshold(skin_grey,157,235,cv2.THRESH_BINARY_INV+cv2.THRESH_OTSU)
         thresh1_edges = cv2.Canny(thresh1,150,620)
+
+#        img = cv2.drawContours(img, contours, -1, (0,255,0), 3)
+
         cv2.imshow('trt',thresh1)
         cv2.imshow('trt_canny',thresh1_edges)
 
 
         cv2.imshow('hsv',crop_img_hsv)
-        cv2.imshow('img',img)
+        
         cv2.imshow('skin',skin)
         end_out_key = cv2.waitKey(1)
         if end_out_key == 27:
