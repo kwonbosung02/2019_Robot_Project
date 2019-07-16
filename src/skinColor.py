@@ -1,7 +1,6 @@
 import cv2
 import numpy as np
-from sklearn.cluster import KMeans
-import imutils
+
 cam = cv2.VideoCapture(0)
 
 if __name__ == "__main__":
@@ -16,6 +15,11 @@ if __name__ == "__main__":
         lower_threshold = np.array([5, 48, 80], dtype=np.uint8)   #한계값
         upper_threshold = np.array([20, 255, 255], dtype=np.uint8)#한계값
 
+        skin_grey = cv2.cvtColor(skin,cv2.COLOR_BGR2GRAY)
+        _, thresh1 = cv2.threshold(skin_grey,157,235,cv2.THRESH_BINARY_INV+cv2.THRESH_OTSU)
+        thresh1_edges = cv2.Canny(thresh1,150,620)
+        cv2.imshow('trt',thresh1)
+        cv2.imshow('trt_canny',thresh1_edges)
         skinMask = cv2.inRange(crop_img_hsv, lower_threshold, upper_threshold)
 
         skinMask = cv2.GaussianBlur(skinMask, (5, 5), 0)
