@@ -5,4 +5,4 @@
 
 모든 사람이 편하게 로봇을 편하게 이용할 수 있도록 하는 꿈을 갖고, 이 프로젝트를 진행할 것 입니다.
 
-ubuntu commit -test
+ubuntu commit -test 2
