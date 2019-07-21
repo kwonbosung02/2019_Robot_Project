@@ -28,7 +28,7 @@ if __name__ == "__main__":
         mask2 = cv2.inRange(hsv, lower_mask, upper_mask)
         #kernal_matrix
         #erosion 침식, dilation 팽창
-        square = np.ones((11, 11), np.uint8)
+    
         ellipse = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (5, 5))
 
         dilation = cv2.dilate(mask2, ellipse, 1)
