@@ -52,6 +52,29 @@ if __name__ == "__main__":
             blur = cv2.GaussianBlur(gray, (blurValue, blurValue), 0)
             cv2.imshow('blurred', blur)
 
+            ret, thresh = cv2.threshold(blur, threshold, 255, cv2.THRESH_BINARY)
+            cv2.imshow('threshold',thresh)
+
+            thresh1 = copy.deepcopy(thresh)
+            try:
+                contours, hierarchy = cv2.findContours(thresh1, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+            except:
+                print("error")
+
+            length = len(contours)
+            maxArea = -1
+
+            if length > 0:
+                for i in range(length):
+                    tem = contours[i]
+
+                    area = cv2.contourArea(tem)
+
+                    if area > maxArea:
+                        maxArea = area
+                        c_i = i
+
+
         k = cv2.waitKey(10)
 
         if k == 27:  # press ESC to exit
