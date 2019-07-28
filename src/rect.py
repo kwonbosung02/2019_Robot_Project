@@ -28,6 +28,34 @@ def remove_background(frame):
     res = cv2.bitwise_and(frame, frame, mask=fgmask)
     return res
 
+def calculate(res, drawing):
+    hull = cv2.convexHull(res, returnPoints=False)
+    if len(hull) > 3:
+        defects = cv2.convexityDefects(res, hull)
+        if type(defects) != type(None):
+
+            cnt = 0
+
+            for i in range(defects.shape[0]):
+                start, end, far, defect = defects[i][0]
+                start__ = tuple(res[start][0])
+                end__ = tuple(res[end][0])
+                far__ = tuple(res[far][0])
+
+                a = math.sqrt((end__[0] - start__[0]) ** 2 + (end__[1] - start__[1]) ** 2)
+                b = math.sqrt((far__[0] - start__[0]) ** 2 + (far__[1] - start__[1]) ** 2)
+                c = math.sqrt((end__[0] - far__[0]) ** 2 + (end__[1] - far__[1]) ** 2)
+
+                angle = math.acos((b ** 2 + c ** 2 - a ** 2)/(2 * b * c))
+                if angle < math.pi / 2:
+                    cnt += 1
+                    cv2.circle(drawing, far__, 8, [211, 84, 0], -1)
+                    cv2.circle(drawing, end__, 8, [0, 211, 0], -1)
+            return True, cnt
+        return False, 0
+
+
+
 cv2.namedWindow('trackbar')
 cv2.createTrackbar('thr1', 'trackbar', threshold, 100, print_threshold)
 
@@ -77,13 +105,25 @@ if __name__ == "__main__":
                     if area > maxArea:
                         maxArea = area
                         c_i = i
+                for cnt in contours:
+                    try:
+                        M = cv2.moments(cnt)
+
+                        cx = int(M['m10'] / M['m00'])
+                        cy = int(M['m01'] / M['m00'])
+                    except:
+                        pass
                 res = contours[c_i]
                 hull = cv2.convexHull(res)
                 draw_Object = np.zeros(img.shape, np.uint8)
 
                 cv2.drawContours(draw_Object, [res], 0, (0, 255, 0), 2)
                 cv2.drawContours(draw_Object, [hull], 0, (255, 255, 0), 2)
+                cv2.circle(draw_Object, (cx, cy), 10, (0, 0, 255), -1)
 
+                calc, cnt = calculate(res, draw_Object)
+                if trigger_switch == True:
+                    print(cnt)
             cv2.imshow('draw_obj', draw_Object)
 
         k = cv2.waitKey(10)
@@ -96,3 +136,15 @@ if __name__ == "__main__":
             bgModel = cv2.createBackgroundSubtractorMOG2(0, background_Subtract_Threshold)
             is_background_captured = 1
             print("capured")
+
+        elif k == ord('r'):
+            bgModel = None
+            trigger_switch = False
+            is_background_captured = 0
+            print('reset')
+        elif k == ord('k'):
+            trigger_switch = True
+            print("================ Trigger ON ================")
+        elif k == ord('o'):
+            trigger_switch = False
+            print("================ Trigger OFF ================")
