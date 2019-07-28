@@ -19,8 +19,7 @@ camera.set(10,200)
 
 def print_threshold(self):
     print("threshold = " + str(self))
-cv2.namedWindow('trackbar')
-cv2.createTrackbar('trh1', 'trackbar', threshold, 100,print_threshold)
+
 
 def remove_background(frame):
     fgmask = bgModel.apply(frame,learningRate=learningRate)
@@ -29,11 +28,15 @@ def remove_background(frame):
     res = cv2.bitwise_and(frame, frame, mask=fgmask)
     return res
 
+cv2.namedWindow('trackbar')
+cv2.createTrackbar('thr1', 'trackbar', threshold, 100, print_threshold)
+
+
 if __name__ == "__main__":
 
     while camera.isOpened():
         ret, frame = camera.read()
-        threshold = cv2.getTrackbarPos('thr1','trackbar')
+        threshold = cv2.getTrackbarPos('thr1', 'trackbar')
         frame = cv2.bilateralFilter(frame, 5, 50, 100)
         frame = cv2.flip(frame, 1)
 
@@ -48,14 +51,15 @@ if __name__ == "__main__":
 
             cv2.imshow('masked', img)
 
-            gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+            gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
             blur = cv2.GaussianBlur(gray, (blurValue, blurValue), 0)
-            cv2.imshow('blurred', blur)
-
+            cv2.imshow('blur', blur)
             ret, thresh = cv2.threshold(blur, threshold, 255, cv2.THRESH_BINARY)
-            cv2.imshow('threshold',thresh)
+
+            cv2.imshow('threshold', thresh)
 
             thresh1 = copy.deepcopy(thresh)
+
             try:
                 contours, hierarchy = cv2.findContours(thresh1, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
             except:
@@ -73,7 +77,14 @@ if __name__ == "__main__":
                     if area > maxArea:
                         maxArea = area
                         c_i = i
+                res = contours[c_i]
+                hull = cv2.convexHull(res)
+                draw_Object = np.zeros(img.shape, np.uint8)
 
+                cv2.drawContours(draw_Object, [res], 0, (0, 255, 0), 2)
+                cv2.drawContours(draw_Object, [hull], 0, (255, 255, 0), 2)
+
+            cv2.imshow('draw_obj', draw_Object)
 
         k = cv2.waitKey(10)
 
