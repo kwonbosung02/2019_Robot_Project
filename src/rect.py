@@ -50,7 +50,10 @@ def calculate(res, drawing):
                 if angle < math.pi / 2:
                     cnt += 1
                     cv2.circle(drawing, far__, 8, [211, 84, 0], -1)
-                    cv2.circle(drawing, end__, 8, [0, 211, 0], -1)
+                    #cv2.circle(drawing, end__, 8, [0, 211, 0], -1)
+                    #cv2.circle(drawing, start__, 8, [0, 211, 0], -1)
+                    print(start__)
+                    print("="*50)
             return True, cnt
         return False, 0
 
@@ -118,7 +121,9 @@ if __name__ == "__main__":
                 draw_Object = np.zeros(img.shape, np.uint8)
 
                 cv2.drawContours(draw_Object, [res], 0, (0, 255, 0), 2)
+
                 cv2.drawContours(draw_Object, [hull], 0, (255, 255, 0), 2)
+
                 cv2.circle(draw_Object, (cx, cy), 10, (0, 0, 255), -1)
 
                 calc, cnt = calculate(res, draw_Object)
