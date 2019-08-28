@@ -1,11 +1,10 @@
-
 import cv2
 import numpy as np
 import copy
 import math
 
-cap_region_x_begin=0.5
-cap_region_y_end=0.8
+cap_region_x_begin = 0.5
+cap_region_y_end = 0.8
 threshold = 60
 blurValue = 41
 background_Subtract_Threshold = 50
@@ -15,18 +14,20 @@ is_background_captured = 0
 trigger_switch = False
 
 camera = cv2.VideoCapture(0)
-camera.set(10,200)
+camera.set(10, 200)
+
 
 def print_threshold(self):
     print("threshold = " + str(self))
 
 
 def remove_background(frame):
-    fgmask = bgModel.apply(frame,learningRate=learningRate)
-    kernel = np.ones((3,3),np.uint8)
-    fgmask = cv2.erode(fgmask, kernel, iterations=1) #이미지 침식
+    fgmask = bgModel.apply(frame, learningRate=learningRate)
+    kernel = np.ones((3, 3), np.uint8)
+    fgmask = cv2.erode(fgmask, kernel, iterations=1)  # 이미지 침식
     res = cv2.bitwise_and(frame, frame, mask=fgmask)
     return res
+
 
 def calculate(res, drawing):
     hull = cv2.convexHull(res, returnPoints=False)
@@ -46,22 +47,19 @@ def calculate(res, drawing):
                 b = math.sqrt((far__[0] - start__[0]) ** 2 + (far__[1] - start__[1]) ** 2)
                 c = math.sqrt((end__[0] - far__[0]) ** 2 + (end__[1] - far__[1]) ** 2)
 
-                angle = math.acos((b ** 2 + c ** 2 - a ** 2)/(2 * b * c))
+                angle = math.acos((b ** 2 + c ** 2 - a ** 2) / (2 * b * c))
                 if angle < math.pi / 2:
                     cnt += 1
                     cv2.circle(drawing, far__, 8, [211, 84, 0], -1)
-                    #cv2.circle(drawing, end__, 8, [0, 211, 0], -1)
-                    #cv2.circle(drawing, start__, 8, [0, 211, 0], -1)
-
+                    # cv2.circle(drawing, end__, 8, [0, 211, 0], -1)
+                    # cv2.circle(drawing, start__, 8, [0, 211, 0], -1)
 
             return True, cnt
         return False, 0
 
 
-
 cv2.namedWindow('trackbar')
 cv2.createTrackbar('thr1', 'trackbar', threshold, 100, print_threshold)
-
 
 if __name__ == "__main__":
 
@@ -72,7 +70,7 @@ if __name__ == "__main__":
         frame = cv2.flip(frame, 1)
 
         cv2.rectangle(frame, (int(cap_region_x_begin * frame.shape[1]), 0),
-                  (frame.shape[1], int(cap_region_y_end * frame.shape[0])), (255, 0, 0), 2)
+                      (frame.shape[1], int(cap_region_y_end * frame.shape[0])), (255, 0, 0), 2)
         cv2.imshow('original', frame)
 
         if is_background_captured == 1:
@@ -104,7 +102,7 @@ if __name__ == "__main__":
                     tem = contours[i]
 
                     area = cv2.contourArea(tem)
-
+                    #areea 이
                     if area > maxArea:
                         maxArea = area
                         c_i = i
@@ -118,9 +116,15 @@ if __name__ == "__main__":
                         pass
                 res = contours[c_i]
                 hull = cv2.convexHull(res)
+                #--------
 
 
+                co = contours[0]
+                (x,y), radius = cv2.minEnclosingCircle(co)
+                center = (int(x),int(y))
+                radius = int(radius)
 
+                #---------
                 draw_Object = np.zeros(img.shape, np.uint8)
 
                 cv2.drawContours(draw_Object, [res], 0, (0, 255, 0), 2)
@@ -128,6 +132,10 @@ if __name__ == "__main__":
                 cv2.drawContours(draw_Object, [hull], 0, (255, 255, 0), 2)
 
                 cv2.circle(draw_Object, (cx, cy), 10, (0, 0, 255), -1)
+
+                draw_Object = cv2.circle(draw_Object, center, radius,(0,255,255),3)
+                print(area)
+
 
                 calc, cnt = calculate(res, draw_Object)
                 if trigger_switch == True:
