@@ -67,6 +67,7 @@ if __name__ == "__main__":
 
     while camera.isOpened():
         ret, frame = camera.read()
+
         threshold = cv2.getTrackbarPos('thr1', 'trackbar')
         frame = cv2.bilateralFilter(frame, 5, 50, 100)
         frame = cv2.flip(frame, 1)
@@ -104,7 +105,9 @@ if __name__ == "__main__":
                     tem = contours[i]
 
                     area = cv2.contourArea(tem)
-
+                    print("="*50)
+                    print(area)
+                    print("="*50)
                     if area > maxArea:
                         maxArea = area
                         c_i = i
@@ -134,7 +137,7 @@ if __name__ == "__main__":
                     print(cnt)
             cv2.imshow('draw_obj', draw_Object)
 
-        k = cv2.waitKey(10)
+        k = cv2.waitKey(1)
 
         if k == 27:  # press ESC to exit
             camera.release()
