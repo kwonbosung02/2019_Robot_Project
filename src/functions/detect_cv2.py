@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import copy
 import math
-from functions import const as c
+
 
 learningRate = 0
 background_Subtract_Threshold = 50
@@ -50,11 +50,56 @@ def calculate(res, drawing):
 
             return True, cnt
         return False, 0
+MX = 0
+MY = 0
 
 def draw____(img,MAX_x,MAX_y):
+    global MX, MY
+    MX = MAX_x
+    MY = MAX_y
     cv2.rectangle(img, (0, 0), (int(MAX_x * 0.2), MAX_y), (100, 0, 255), 2);
     cv2.rectangle(img, (int(MAX_x * 0.8), 0), (MAX_x, MAX_y), (100, 0, 255), 2);
-    cv2.rectangle(img, (int(MAX_x * 0.2), int(MAX_y * 0.82)), (int(MAX_x * 0.5), MAX_y), (255, 0, 255), 2);
-    cv2.rectangle(img, (int(MAX_x * 0.5), int(MAX_y * 0.82)), (int(MAX_x * 0.8), MAX_y), (255, 0, 255), 2);
-    return img
+    cv2.rectangle(img, (int(MAX_x * 0.2), int(MAX_y * 0.62)), (int(MAX_x * 0.5), MAX_y), (255, 0, 255), 2);
+    cv2.rectangle(img, (int(MAX_x * 0.5), int(MAX_y * 0.62)), (int(MAX_x * 0.8), MAX_y), (255, 0, 255), 2);
 
+    return img
+global cnt
+cnt = 0
+def return_compare(compare):
+    global MX,MY
+    global cnt
+
+    print(cnt)
+    if(compare[0] > int(MX * 0.2) and compare[0] < int(MX * 0.5) and compare[1] > int(MY * 0.62) and compare[1] < MY) :
+        cnt= cnt+1
+        if(cnt >= 5):
+
+            return "section1"
+        else :
+            pass
+    if(compare[0] > int(MX * 0.5) and compare[0] < int(MX * 0.8) and compare[1] > int(MY * 0.62) and compare[1] < MY) :
+        cnt= cnt+1
+        if(cnt >= 5):
+
+            return "section2"
+        else :
+            pass
+
+    elif(compare[0] < int(MX * 0.8)) :
+        cnt = cnt+1
+        if(cnt >= 3):
+
+            return "left"
+        else :
+            pass
+
+    elif(compare[0] > int(MX * 0.8) and compare[0] < int(MX)) :
+        if(cnt >= 5):
+
+            return "right"
+        else :
+            pass
+
+    else :
+        cnt = 0
+        return "none"

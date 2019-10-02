@@ -1,3 +1,8 @@
+
+import sys, os
+sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
+sys.path.insert(0,"../functions/detect_cv2.py")
+sys.path.insert(0,"../functions/const.py")
 from functions import detect_cv2 as d
 from functions import const as c
 import cv2
@@ -48,7 +53,7 @@ if __name__ == "__main__":
                 for cnt in contours:
                     try:
                         M = cv2.moments(cnt)
-
+                        global cx, cy
                         cx = int(M['m10'] / M['m00'])
                         cy = int(M['m01'] / M['m00'])
                     except:
@@ -56,9 +61,9 @@ if __name__ == "__main__":
                 cv2.setMouseCallback('draw_obj', d.CallBackFunction)
                 res = contours[c_i]
                 hull = cv2.convexHull(res)
-
-
-
+                compare = (cx,cy)
+                print(compare)
+                print(d.return_compare(compare))
                 draw_Object = np.zeros(img.shape, np.uint8)
                 cv2.drawContours(draw_Object, [res], 0, (0, 255, 0), 2)
                 cv2.drawContours(draw_Object, [hull], 0, (255, 255, 0), 2)
@@ -75,6 +80,8 @@ if __name__ == "__main__":
             cv2.imshow('blur', blur)
             cv2.imshow('threshold', thresh)
             cv2.imshow('draw_obj', draw_Object)
+        ########
+
 
         k = cv2.waitKey(1)
 
