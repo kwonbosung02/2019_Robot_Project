@@ -62,7 +62,6 @@ if __name__ == "__main__":
                 res = contours[c_i]
                 hull = cv2.convexHull(res)
                 compare = (cx,cy)
-                print(compare)
                 print(d.return_compare(compare))
                 draw_Object = np.zeros(img.shape, np.uint8)
                 cv2.drawContours(draw_Object, [res], 0, (0, 255, 0), 2)

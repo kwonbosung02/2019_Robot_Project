@@ -43,11 +43,13 @@ def calculate(res, drawing):
                 angle = math.acos((b ** 2 + c ** 2 - a ** 2)/(2 * b * c))
                 if angle < math.pi / 2:
                     cnt += 1
+
                     cv2.circle(drawing, far__, 8, [211, 84, 0], -1)
                     #cv2.circle(drawing, end__, 8, [0, 211, 0], -1)
                     #cv2.circle(drawing, start__, 8, [0, 211, 0], -1)
 
-
+            global hands_c
+            hands_c  = cnt
             return True, cnt
         return False, 0
 MX = 0
@@ -67,39 +69,41 @@ global cnt
 cnt = 0
 def return_compare(compare):
     global MX,MY
-    global cnt
+    global cnt, hands_c
 
-    print(cnt)
+
     if(compare[0] > int(MX * 0.2) and compare[0] < int(MX * 0.5) and compare[1] > int(MY * 0.62) and compare[1] < MY) :
         cnt= cnt+1
         if(cnt >= 5):
 
-            return "section1"
+            return "section1_"+str(hands_c)
         else :
             pass
     if(compare[0] > int(MX * 0.5) and compare[0] < int(MX * 0.8) and compare[1] > int(MY * 0.62) and compare[1] < MY) :
         cnt= cnt+1
         if(cnt >= 5):
 
-            return "section2"
+            return "section2_"+str(hands_c)
         else :
             pass
 
-    elif(compare[0] < int(MX * 0.8)) :
+    elif(compare[0] < int(MX * 0.2)) :
         cnt = cnt+1
         if(cnt >= 3):
 
-            return "left"
+            return "left_"+str(hands_c)
         else :
             pass
 
     elif(compare[0] > int(MX * 0.8) and compare[0] < int(MX)) :
         if(cnt >= 5):
 
-            return "right"
+            return "right_"+str(hands_c)
         else :
             pass
 
     else :
-        cnt = 0
-        return "none"
+        if(cnt < 5): pass
+        if(cnt >= 5):
+
+            return "none_"+str(hands_c)

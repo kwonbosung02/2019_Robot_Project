@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e85b8b6-c854-4b25-97e8-efc6f984cd9c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/2019_Robot_Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/2019_Robot_Project.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/functions/detect_cv2.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions/detect_cv2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/re/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/re/main.py" afterDir="false" />
@@ -57,7 +54,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.detect_cv2">
+  <component name="RunManager" selected="Python.main">
     <configuration name="2019-08-28" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="2019_Robot_Project" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -165,8 +162,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.detect_cv2" />
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.detect_cv2" />
         <item itemvalue="Python.2019-08-28" />
         <item itemvalue="Python.rect" />
         <item itemvalue="Python.t" />
