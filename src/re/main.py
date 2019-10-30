@@ -8,7 +8,9 @@ from functions import const as c
 import cv2
 import numpy as np
 import copy
-import math
+import serial
+ser = serial.Serial('COM4', 9600)
+
 
 camera = cv2.VideoCapture(0)
 camera.set(10,200)
@@ -16,7 +18,7 @@ cv2.namedWindow('trackbar')
 cv2.createTrackbar('thr1', 'trackbar', c.threshold, 100, d.print_threshold)
 
 if __name__ == "__main__":
-
+    counter = 0
     while camera.isOpened():
         ret, frame = camera.read()
 
@@ -73,6 +75,13 @@ if __name__ == "__main__":
 
                 calc, cnt = d.calculate(res, draw_Object)
                 if c.trigger_switch == True:
+                    try:
+                        if counter % 10 == 0:
+                            ser.write(str(cnt).encode('utf-8'))
+                            print("============SENDED============")
+                    except:
+                        print("==============ERR==============")
+
                     '''print(cnt)'''
 
             cv2.imshow('masked', img)
@@ -80,8 +89,8 @@ if __name__ == "__main__":
             cv2.imshow('threshold', thresh)
             cv2.imshow('draw_obj', draw_Object)
         ########
-
-
+        counter = counter + 1
+        print(counter)
         k = cv2.waitKey(1)
 
         if k == 27:  # press ESC to exit
@@ -100,7 +109,7 @@ if __name__ == "__main__":
             '''print('reset')'''
         elif k == ord('k'):
             c.trigger_switch = True
-            '''print("================ Trigger ON ================")'''
+            print("================ Trigger ON ================")
         elif k == ord('o'):
             c.trigger_switch = False
-            '''print("================ Trigger OFF ================")'''
+            print("================ Trigger OFF ================")
