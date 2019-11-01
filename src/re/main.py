@@ -77,7 +77,7 @@ if __name__ == "__main__":
                 if c.trigger_switch == True:
                     try:
                         if counter % 10 == 0:
-                            #ser.write(str(cnt + d.return_compare(compare)).encode('utf-8'))
+                            #ser.write(str(cnt + d.return_compare(compare)+1).encode('utf-8'))
                             print(str(cnt + d.return_compare(compare)))
                             print("============SENDED============")
                         else:
