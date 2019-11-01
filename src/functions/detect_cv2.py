@@ -76,14 +76,16 @@ def return_compare(compare):
         cnt= cnt+1
         if(cnt >= 5):
 
-            return "section1_"+str(hands_c)
+            #return "section1_"+str(hands_c)
+            return 1000
         else :
             pass
     if(compare[0] > int(MX * 0.5) and compare[0] < int(MX * 0.8) and compare[1] > int(MY * 0.62) and compare[1] < MY) :
         cnt= cnt+1
         if(cnt >= 5):
 
-            return "section2_"+str(hands_c)
+            #return "section2_"+str(hands_c)
+            return 2000
         else :
             pass
 
@@ -91,14 +93,16 @@ def return_compare(compare):
         cnt = cnt+1
         if(cnt >= 3):
 
-            return "left_"+str(hands_c)
+            #return "left_"+str(hands_c)
+            return 3000
         else :
             pass
 
     elif(compare[0] > int(MX * 0.8) and compare[0] < int(MX)) :
         if(cnt >= 5):
 
-            return "right_"+str(hands_c)
+            #return "right_"+str(hands_c)
+            return 4000
         else :
             pass
 
@@ -106,4 +110,5 @@ def return_compare(compare):
         if(cnt < 5): pass
         if(cnt >= 5):
 
-            return "none_"+str(hands_c)
+            #return "none_"+str(hands_c)
+            return 0

@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="8e85b8b6-c854-4b25-97e8-efc6f984cd9c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/serial/serial.ino" beforeDir="false" afterPath="$PROJECT_DIR$/src/serial/serial.ino" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/functions/detect_cv2.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions/detect_cv2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/re/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/re/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

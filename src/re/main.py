@@ -9,8 +9,8 @@ import cv2
 import numpy as np
 import copy
 import serial
-ser = serial.Serial('COM4', 9600)
-
+#ser = serial.Serial('COM4', 9600)
+#########################
 
 camera = cv2.VideoCapture(0)
 camera.set(10,200)
@@ -64,7 +64,7 @@ if __name__ == "__main__":
                 res = contours[c_i]
                 hull = cv2.convexHull(res)
                 compare = (cx,cy)
-                print(d.return_compare(compare))
+                #print(d.return_compare(compare))
                 draw_Object = np.zeros(img.shape, np.uint8)
                 cv2.drawContours(draw_Object, [res], 0, (0, 255, 0), 2)
                 cv2.drawContours(draw_Object, [hull], 0, (255, 255, 0), 2)
@@ -77,8 +77,11 @@ if __name__ == "__main__":
                 if c.trigger_switch == True:
                     try:
                         if counter % 10 == 0:
-                            ser.write(str(cnt).encode('utf-8'))
+                            #ser.write(str(cnt + d.return_compare(compare)).encode('utf-8'))
+                            print(str(cnt + d.return_compare(compare)))
                             print("============SENDED============")
+                        else:
+                            pass
                     except:
                         print("==============ERR==============")
 
@@ -90,7 +93,7 @@ if __name__ == "__main__":
             cv2.imshow('draw_obj', draw_Object)
         ########
         counter = counter + 1
-        print(counter)
+        #print(counter)
         k = cv2.waitKey(1)
 
         if k == 27:  # press ESC to exit
