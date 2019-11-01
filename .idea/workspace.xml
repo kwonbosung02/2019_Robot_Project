@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e85b8b6-c854-4b25-97e8-efc6f984cd9c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/test_kivy/test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/researching/2019-11-01.md" beforeDir="false" afterPath="$PROJECT_DIR$/researching/2019-11-01.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/functions/detect_cv2.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions/detect_cv2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/re/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/re/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/serial/check_0.ino" beforeDir="false" afterPath="$PROJECT_DIR$/src/serial/check_0.ino" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/serial/serial.ino" beforeDir="false" afterPath="$PROJECT_DIR$/src/serial/serial.ino" afterDir="false" />
@@ -136,7 +138,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="t" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="2019_Robot_Project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -144,11 +146,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/test_kivy" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/t.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/test_kivy/test.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -160,10 +162,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.test" />
         <item itemvalue="Python.detect_cv2" />
         <item itemvalue="Python.2019-08-28" />
         <item itemvalue="Python.rect" />
-        <item itemvalue="Python.t" />
       </list>
     </recent_temporary>
   </component>

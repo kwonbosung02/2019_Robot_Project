@@ -27,6 +27,7 @@ if __name__ == "__main__":
         frame = cv2.flip(frame, 1)
         cv2.rectangle(frame, (int(c.cap_region_x_begin * frame.shape[1]), 50),  (frame.shape[1], int(c.cap_region_y_end * frame.shape[0])), (255, 0, 0), 2)
         cv2.imshow('original', frame)
+        cv2.moveWindow('original',10,10)
 
         if c.is_background_captured == 1:
             img = d.remove_background(frame)
@@ -74,23 +75,33 @@ if __name__ == "__main__":
                 d.draw____(draw_Object,MAX_x,MAX_y)
 
                 calc, cnt = d.calculate(res, draw_Object)
+                #print('counter: ' + str(counter))
                 if c.trigger_switch == True:
-                    try:
-                        if counter % 10 == 0:
-                            #ser.write(str(cnt + d.return_compare(compare)+1).encode('utf-8'))
-                            print(str(cnt + d.return_compare(compare)))
-                            print("============SENDED============")
-                        else:
-                            pass
-                    except:
-                        print("==============ERR==============")
+                    if counter % 7 == 0:
+                            k = d.return_compare(compare)
 
-                    '''print(cnt)'''
+                            if k == -1 :
+                                pass
+
+                            else:
+                                # ser.write(str(cnt + d.return_compare(compare)+1).encode('utf-8'))
+                                print(cnt + int(d.return_compare(compare))+1)
+                                print("============SENDED============")
+
+                    else:
+                        pass
+
+                    #print(cnt)
 
             cv2.imshow('masked', img)
+            cv2.moveWindow('masked', 640, 10)
             cv2.imshow('blur', blur)
+            cv2.moveWindow('blur', 960, 10)
             cv2.imshow('threshold', thresh)
+            cv2.moveWindow('threshold', 1280, 10)
             cv2.imshow('draw_obj', draw_Object)
+            cv2.moveWindow('draw_obj', 1600, 10)
+
         ########
         counter = counter + 1
         #print(counter)
