@@ -79,19 +79,14 @@ if __name__ == "__main__":
                 if c.trigger_switch == True:
                     if counter % 7 == 0:
                             k = d.return_compare(compare)
-
                             if k == -1 :
                                 pass
-
                             else:
                                 # ser.write(str(cnt + d.return_compare(compare)+1).encode('utf-8'))
                                 print(cnt + int(d.return_compare(compare))+1)
                                 print("============SENDED============")
-
                     else:
                         pass
-
-                    #print(cnt)
 
             cv2.imshow('masked', img)
             cv2.moveWindow('masked', 640, 10)

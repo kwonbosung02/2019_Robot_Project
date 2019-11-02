@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e85b8b6-c854-4b25-97e8-efc6f984cd9c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test_kivy/test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/researching/2019-11-01.md" beforeDir="false" afterPath="$PROJECT_DIR$/researching/2019-11-01.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/functions/detect_cv2.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/functions/detect_cv2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/re/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/re/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/serial/check_0.ino" beforeDir="false" afterPath="$PROJECT_DIR$/src/serial/check_0.ino" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/serial/serial.ino" beforeDir="false" afterPath="$PROJECT_DIR$/src/serial/serial.ino" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
