@@ -3,17 +3,23 @@ void setup() {
   pinMode(8,OUTPUT);
   pinMode(9,OUTPUT);
 }
-int get = 0;
+char get = 0;
+
 boolean check = false;
 void loop() {
+  
     digitalWrite(8,LOW);
-    get = Serial.parseInt();
+    get = Serial.read();
+    
     check_0(get);
     check_1000(get);
     check_2000(get);
     
  
 
-    check = false;
     
+    get = ' ';
+    check = false;
+    delay(50);
+    delay(50);
 }

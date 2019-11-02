@@ -9,7 +9,7 @@ import cv2
 import numpy as np
 import copy
 import serial
-#ser = serial.Serial('COM4', 9600)
+ser = serial.Serial('COM5', 9600)
 #########################
 
 camera = cv2.VideoCapture(0)
@@ -77,17 +77,17 @@ if __name__ == "__main__":
                 calc, cnt = d.calculate(res, draw_Object)
                 #print('counter: ' + str(counter))
                 if c.trigger_switch == True:
-                    if counter % 7 == 0:
+                    if counter % 2 == 0:
                             k = d.return_compare(compare)
                             if k == -1 :
                                 pass
                             else:
-                                # ser.write(str(cnt + d.return_compare(compare)+1).encode('utf-8'))
+                                ser.write(str(cnt + d.return_compare(compare)+1).encode('utf-8'))
                                 print(cnt + int(d.return_compare(compare))+1)
                                 print("============SENDED============")
                     else:
                         pass
-
+                print(counter)
             cv2.imshow('masked', img)
             cv2.moveWindow('masked', 640, 10)
             cv2.imshow('blur', blur)
