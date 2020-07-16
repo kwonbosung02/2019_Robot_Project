@@ -1,6 +1,6 @@
 ### 라즈베리파이 SAMBA접속
 
-`sudo apt-get install samba-common-bin` 
+`sudo apt-get install samba samba-common-bin` 
 
 `sudo nano /etc/samba/smb.conf`
 
